@@ -1,0 +1,23 @@
+.containerS{
+    background-color: rgb(168, 172, 172);
+    margin: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+.fields{
+    padding: 10px;
+    font-weight: bold;
+    font-size: larger;
+    color: black;
+}
+.button{
+    padding: 20px;
+    background-color: rgb(94, 8, 8);
+    border: none;
+    color: white;
+    border: 3px solid wheat;
+    font-weight: bold;
+}
+.button:hover{
+    cursor: pointer;
+}

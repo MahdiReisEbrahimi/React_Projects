@@ -1,0 +1,20 @@
+.add_student__form {
+    padding: 10px;
+    margin: 20px;
+    text-align: center;
+}
+
+.input_student{
+    padding: 10px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+
+.add_student_submit_button{
+    cursor: pointer;
+    background-color: rgb(13, 238, 13);
+    color: black;
+    font-weight: bold;
+    
+}
