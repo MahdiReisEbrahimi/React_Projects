@@ -1,5 +1,6 @@
 import AddNewStudent from './AddNewStudent';
 import './App.css';
+import Welcom from './Header/Welcom';
 import StudentCard from './StudentCards';
 import React, { useState } from 'react';
 
@@ -62,19 +63,21 @@ function App() {
 
   return (
     <div className='container'>
+      <Welcom />
       <AddNewStudent OnAddNewStudentSubmit={AddingNewStudentToList} />
-
-      {student.map(student => (
-        <StudentCard
-          onChange={StudentCardDeleteListener}
-          nameK={student.name}
-          passK={student.pass}
-          numberK={student.studentNum}
-          id={student.studentNum}
-          key={student.studentNum}
-        />
-      ))
-      }
+      <ul>
+        {student.map(student => (
+          <StudentCard
+            onChange={StudentCardDeleteListener}
+            nameK={student.name}
+            passK={student.pass}
+            numberK={student.studentNum}
+            id={student.studentNum}
+            key={student.studentNum}
+          />
+        ))
+        }
+      </ul>
 
     </div>
   );

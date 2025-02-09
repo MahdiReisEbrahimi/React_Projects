@@ -2,19 +2,27 @@
     padding: 10px;
     margin: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.input_student{
+.input_student {
     padding: 10px;
     border: none;
-    margin: 0 5px;
+    margin: 5px 5px;
     border-radius: 5px;
+    border: solid 3px rgb(0, 0, 0);
 }
 
-.add_student_submit_button{
+.input_student.invalid {
+    background-color: rgb(248, 174, 174);
+    border-color: rgb(119, 11, 11);
+}
+
+.add_student_submit_button {
     cursor: pointer;
-    background-color: rgb(13, 238, 13);
-    color: black;
+    background-color: rgb(3, 71, 3);
+    color: white;
     font-weight: bold;
-    
+    border: 3px solid white;
 }
