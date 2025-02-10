@@ -1,7 +1,7 @@
-import AddNewStudent from './AddNewStudent';
-import './App.css';
-import Welcom from './Header/Welcom';
-import StudentCard from './StudentCards';
+import AddNewStudent from './Components/AddNewStudent';
+import styles from './App.module.css';
+import Welcom from './Components/Header/Welcom';
+import StudentCard from './Components/StudentCards';
 import React, { useState } from 'react';
 
 
@@ -62,9 +62,10 @@ function App() {
   }
 
   return (
-    <div className='container'>
+    <div className={styles.container}>
       <Welcom />
       <AddNewStudent OnAddNewStudentSubmit={AddingNewStudentToList} />
+
       <ul>
         {student.map(student => (
           <StudentCard
