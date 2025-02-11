@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Container from "../UI/Container";
+import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
 
 const InputForm = (props) => {
 
@@ -10,6 +13,7 @@ const InputForm = (props) => {
         if (event.target.value.trim().length === 0) setCorrectInput({ name: false, age: correctInput.age, })
         else setCorrectInput({ name: true, age: correctInput.age, })
     }
+
     const ageChangeHandler = (event) => {
         setValue({ name: value.name, age: event.target.value });
         if (event.target.value.trim().length === 0) setCorrectInput({ name: correctInput.name, age: false, })
@@ -27,48 +31,39 @@ const InputForm = (props) => {
             return;
         }
 
-        const temp = {
-            nameInput: value.name,
-            ageInput: value.age,
-        }
-
         setValue({ name: '', age: '' });
 
-        props.onFormSave(temp);
+        props.onFormSave(value.name, value.age);
     }
 
 
     return (
-        <div className="bg-amber-200 mt-20 mb-10 p-10 rounded-2xl">
-            <form onSubmit={SubmitHandler} className="flex flex-col justify-around">
-                <section className="mb-4 mt-5  flex flex-col">
-                    <label htmlFor="" className="font-bold">Username</label>
+        <div>
+            <Container bg={"bg-amber-200"}>
+                <form onSubmit={SubmitHandler} className="flex flex-col justify-around">
+                    <label htmlFor="valueName" className="font-bold">Username</label>
                     <input
+                        id="valueName"
                         onChange={nameChangeHandler}
                         value={value.name}
                         type="text"
-                        className={`${correctInput.name ? 'bg-amber-400' : 'bg-red-400'}  p-2 mt-1 border-2  rounded-2xl`}
+                        className={`${correctInput.name ? 'bg-amber-400' : 'bg-red-400'}  p-2 mt-1 mb-3 border-2  rounded-2xl`}
                     />
-                </section>
-                <section className="flex flex-col mb-5 ">
-                    <label htmlFor="" className="font-bold">Age (years)</label>
-                    <input onChange={ageChangeHandler} value={value.age} type="number" className={`${correctInput.age ? 'bg-amber-400' : 'bg-red-400'}  p-2 mt-1 border-2  rounded-2xl`} />
-                </section>
-                <button
-                    className="
-                        bg-amber-400 border-2 
-                        hover:bg-amber-950 
-                        hover:text-amber-50 
-                        hover:cursor-pointer 
-                        border-black rounded-2xl 
-                        font-bold 
-                        p-2 
-                    "
-                    type="submit">Submit</button>
-            </form>
+
+                    <label htmlFor="valueAge" className="font-bold">Age (years)</label>
+                    <input
+                        id="valueAge"
+                        onChange={ageChangeHandler}
+                        value={value.age}
+                        type="number"
+                        className={`${correctInput.age ? 'bg-amber-400' : 'bg-red-400'}  p-2 mt-1 mb-6 border-2  rounded-2xl`}
+                    />
+                    <Button type={"submit"} text={"submit"} />
+                </form>
+            </Container>
+            {correctInput.age || <ErrorModal title={"Enter a vallid User name "} errorMessage={"valid user names have 1-9 A-Z a-z characters."} />}
         </div>
     );
-
 }
 
 export default InputForm;

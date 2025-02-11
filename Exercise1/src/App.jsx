@@ -1,30 +1,33 @@
 import { useState } from 'react'
 import InputForm from './Form/InputForm'
 import ThingsContainer from './Cards/ThingsContainer'
+import Container from './UI/Container';
 
-const x = [{
+const list = [{
   name: 'pillow',
   age: 23,
-  id: 101212,
+  id: Math.random().toString(),
 },]
 
 function App() {
 
-  const [things, setThings] = useState(x);
+  const [things, setThings] = useState(list);
 
-  const formSaveHandler = (input) => {
-    const newThing = {
-      name: input.nameInput,
-      age: input.age,
-      id: Math.random().toString(),
-    }
-    setThings([newThing, ...things]);
+  const formSaveHandler = (name, age) => {
+
+    setThings((prevThings) => {
+      return [
+        ...prevThings,
+        { name: name, age: age, id: Math.random().toString(), }
+      ]
+    });
   }
+
   return (
-    <div className='flex flex-col bg-amber-800 p-2 w-100 ml-auto mr-auto'>
+    <Container bg={"bg-yellow-700 w-100 mr-auto ml-auto mt-30"}>
       <InputForm onFormSave={formSaveHandler} />
       <ThingsContainer thingK={things} />
-    </div>
+    </Container>
   )
 }
 
