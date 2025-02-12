@@ -1,6 +1,12 @@
 const Button = (props) => {
+
+    const clickHandler = () => {
+        let x = 1
+        props.onButtonClick(x);
+    }
     return (
         <button
+            onClick={clickHandler}
             className="
             bg-amber-400 border-2 
             hover:bg-amber-950 

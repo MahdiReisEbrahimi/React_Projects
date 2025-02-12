@@ -7,6 +7,7 @@ const InputForm = (props) => {
 
     const [value, setValue] = useState({ name: '', age: '' });
     const [correctInput, setCorrectInput] = useState({ name: true, age: true });
+    const [error, setError] = useState({ needError: false, item: '' });
 
     const nameChangeHandler = (event) => {
         setValue({ name: event.target.value, age: value.age });
@@ -25,9 +26,17 @@ const InputForm = (props) => {
 
         if (value.name.trim().length === 0) {
             setCorrectInput({ name: false, age: correctInput.age });
+            if (value.age.trim().length === 0) {
+                setCorrectInput({ name: correctInput.name, age: false });
+            }
+            setError({ needError: true, item: 'name' });
             return;
         } else if (value.age.trim().length === 0) {
             setCorrectInput({ name: correctInput.name, age: false });
+            if (value.name.trim().length === 0) {
+                setCorrectInput({ name: false, age: correctInput.age });
+            }
+            setError({ needError: true, item: 'age' });
             return;
         }
 
@@ -36,6 +45,12 @@ const InputForm = (props) => {
         props.onFormSave(value.name, value.age);
     }
 
+    const OkHandler = (clicked) => {
+        if (clicked) {
+            setCorrectInput({ name: true, age: true });
+            setError(false);
+        }
+    }
 
     return (
         <div>
@@ -61,7 +76,14 @@ const InputForm = (props) => {
                     <Button type={"submit"} text={"submit"} />
                 </form>
             </Container>
-            {correctInput.age || <ErrorModal title={"Enter a vallid User name "} errorMessage={"valid user names have 1-9 A-Z a-z characters."} />}
+            {
+                error.needError && (
+                    <ErrorModal
+                        onOkClick={OkHandler}
+                        title={`Enter your ${error.item}`}
+                        errorMessage={error.item === 'age' ? 'valid Age is made of 1-9 characters' : 'valid Name is made of A-Z a-z characters'}
+                    />)
+            }
         </div>
     );
 }
