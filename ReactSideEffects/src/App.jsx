@@ -1,36 +1,19 @@
-import React, { useState, useEffect } from "react";
-import FormComponent from "./Form/FormComponent";
-import HeaderTape from "./Header/HeaderTape";
-import HomePage from "./Home/HomePage";
+import React, { useState, useEffect, useContext } from "react";
+import FormComponent from "./Components/Form/FormComponent";
+import HeaderTape from "./Components/Header/HeaderTape";
+import HomePage from "./Components/Home/HomePage";
+import AuthContext from "./Context/Auth-Context";
 
 function App() {
-  const [isLogedIn, setIsLogedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-
-  useEffect(() => {
-    const localStorageInfo =
-      localStorage.getItem("isLogedIn") === "1" ? true : false;
-
-    if (localStorageInfo) setIsLogedIn(true);
-  }, []);
-
-  const logginHandler = (userValue, isLoged) => {
-    setUserName(userValue);
-    setIsLogedIn(isLoged);
-
-    if (isLoged === true) {
-      localStorage.setItem("isLogedIn", "1");
-    } else localStorage.setItem("isLogedIn", "0");
-  };
-
+  const ctx = useContext(AuthContext);
   return (
     <div>
-      {isLogedIn ? (
-        <HomePage userName={userName} />
+      {ctx.isLogedIn ? (
+        <HomePage />
       ) : (
         <React.Fragment>
           <HeaderTape />
-          <FormComponent onLogin={logginHandler} />
+          <FormComponent />
         </React.Fragment>
       )}
     </div>

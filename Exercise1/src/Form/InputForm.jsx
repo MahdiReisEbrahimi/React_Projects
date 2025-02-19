@@ -53,7 +53,7 @@ const InputForm = (props) => {
     }
 
     return (
-        <div>
+        <React.Fragment>
             <Container bg={"bg-amber-200"}>
                 <form onSubmit={SubmitHandler} className="flex flex-col justify-around">
                     <label htmlFor="valueName" className="font-bold">Username</label>
@@ -84,7 +84,7 @@ const InputForm = (props) => {
                         errorMessage={error.item === 'age' ? 'valid Age is made of 1-9 characters' : 'valid Name is made of A-Z a-z characters'}
                     />)
             }
-        </div>
+        </React.Fragment>
     );
 }
 
