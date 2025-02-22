@@ -1,18 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AuthContext = React.createContext({
-  //snippet things
+  foods: () => {},
+  chosenFoods: "",
+  isCartClicked: false,
+  onSpaceClick: () => {},
 });
 
+const foods = [
+  {
+    name: "Iranian Kebab",
+    detail: "maded with fresh meats",
+    amount: 123,
+    id: 1,
+  },
+  {
+    name: "Iranian Kebab",
+    detail: "maded with fresh meats",
+    amount: 123,
+    id: 2,
+  },
+  {
+    name: "Iranian Kebab",
+    detail: "maded with fresh meats",
+    amount: 123,
+    id: 3,
+  },
+  {
+    name: "Iranian Kebab",
+    detail: "maded with fresh meats",
+    amount: 123,
+    id: 4,
+  },
+];
+
 export const AuthContextProvider = (props) => {
+  const [isCartClicked, setIsCartClicked] = useState(false);
+
+  const onCartClick = () => {
+    setIsCartClicked(true);
+  };
+
+  const onSpaceClick = () => {
+    setIsCartClicked(false);
+  };
+
   return (
-    <AuthContextProvider
+    <AuthContext.Provider
       value={{
-        isLogedin: false,
+        isCartClicked: isCartClicked,
+        onSpaceClick: onSpaceClick,
+        onCartClick: onCartClick,
+        foods: foods,
       }}
     >
       {props.children}
-    </AuthContextProvider>
+    </AuthContext.Provider>
   );
 };
 

@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "./Components/Header";
 import Tips from "./Components/Tips";
 import Foods from "./Components/Foods";
-
-const foods = [
-  { name: "Iranian Kebab", detail: "maded with fresh meats", amount: 123 },
-  { name: "Iranian Kebab", detail: "maded with fresh meats", amount: 123 },
-  { name: "Iranian Kebab", detail: "maded with fresh meats", amount: 123 },
-  { name: "Iranian Kebab", detail: "maded with fresh meats", amount: 123 },
-  { name: "Iranian Kebab", detail: "maded with fresh meats", amount: 123 },
-];
+import Cart from "./Components/Cart/Cart";
+import AuthContext from "./Context/Auth-context";
 
 const App = () => {
+  const ctx = useContext(AuthContext);
   return (
-    <div>
-      <Header />
-      <Tips />
-      <Foods foods={foods} />
-    </div>
+    <React.Fragment>
+      {ctx.isCartClicked && <Cart />}
+      <div>
+        <Header />
+        <Tips />
+        <Foods />
+      </div>
+    </React.Fragment>
   );
 };
 

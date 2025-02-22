@@ -1,18 +1,18 @@
 import Button from "./UI/Button";
+import AuthContext from "../Context/Auth-context";
+import { useContext } from "react";
 
 const Header = () => {
-  const clickHandler = () => {
-    console.log("lsksdlkjflfjfsflk");
-  };
+  const ctx = useContext(AuthContext);
 
   return (
     <header className="fixed w-full flex justify-around mt-10 bg-blue-100 p-5 items-center ">
       <h1 className="font-bold text-2xl">MehdiMeals</h1>
       <Button
         type={"submit"}
-        onClick={clickHandler}
+        onClick={ctx.isCartClicked ? ctx.onSpaceClick : ctx.onCartClick}
         className="w-37 hover:border-amber-50"
-        text="Your Cart"
+        text={ctx.isCartClicked ? "Close Cart" : "Your Cart"}
         hasIcon={true}
       />
     </header>
