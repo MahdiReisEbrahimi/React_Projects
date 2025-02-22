@@ -1,18 +1,14 @@
 import FoodCard from "./FoodCard";
-import Card from "./UI/Card";
 import AuthContext from "../Context/Auth-context";
 import { useContext } from "react";
+import Cart from "./Cart/Cart";
 
 const Foods = () => {
   const ctx = useContext(AuthContext);
   return (
-    <div className="bg-blue-300 w-230 h-200 mt-10 m-auto p-4 overflow-auto">
+    <div className="bg-blue-300 w-4/5 h-200 mt-10 m-auto p-4 overflow-auto rounded-2xl">
       {ctx.foods.map((food) => {
-        return (
-          <Card key={food.id}>
-            <FoodCard food={food} />
-          </Card>
-        );
+        return <FoodCard key={food.id} food={food} />;
       })}
     </div>
   );

@@ -1,7 +1,7 @@
 const Tips = () => {
   const className = "text-black mb-5 ";
   return (
-    <div className="pt-48 w-130 m-auto">
+    <div className="pt-48 w-4/5 m-auto">
       <div className="bg-blue-100 p-5 font-bold">
         <p className={className}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, saepe

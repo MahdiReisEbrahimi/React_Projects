@@ -5,37 +5,39 @@ const AuthContext = React.createContext({
   chosenFoods: "",
   isCartClicked: false,
   onSpaceClick: () => {},
+  onAddFoods: () => {},
 });
 
 const foods = [
   {
-    name: "Iranian Kebab",
+    name: "کباب تهرون",
     detail: "maded with fresh meats",
-    amount: 123,
+    amount: 19,
     id: 1,
   },
   {
-    name: "Iranian Kebab",
+    name: "قرمه سبزی",
     detail: "maded with fresh meats",
-    amount: 123,
+    amount: 17,
     id: 2,
   },
   {
-    name: "Iranian Kebab",
+    name: "قیمه",
     detail: "maded with fresh meats",
-    amount: 123,
+    amount: 12,
     id: 3,
   },
   {
-    name: "Iranian Kebab",
+    name: "ویژویژک",
     detail: "maded with fresh meats",
-    amount: 123,
+    amount: 18,
     id: 4,
   },
 ];
 
 export const AuthContextProvider = (props) => {
   const [isCartClicked, setIsCartClicked] = useState(false);
+  const [chosenFoods, setChosenFoods] = useState([]);
 
   const onCartClick = () => {
     setIsCartClicked(true);
@@ -45,6 +47,26 @@ export const AuthContextProvider = (props) => {
     setIsCartClicked(false);
   };
 
+  const onAddFoods = (id, number) => {
+    setChosenFoods((prevFoods) => {
+      const existingFoodIndex = prevFoods.findIndex((food) => food.id === id);
+
+      if (existingFoodIndex !== -1) {
+        const updatedFoods = [...prevFoods];
+        updatedFoods[existingFoodIndex] = {
+          ...updatedFoods[existingFoodIndex],
+          number: updatedFoods[existingFoodIndex].number + number,
+        };
+        return updatedFoods;
+      } else {
+        const food = foods.find((x) => x.id === id);
+        if (!food) return prevFoods;
+
+        return [...prevFoods, { ...food, number }];
+      }
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -52,6 +74,8 @@ export const AuthContextProvider = (props) => {
         onSpaceClick: onSpaceClick,
         onCartClick: onCartClick,
         foods: foods,
+        onAddFoods: onAddFoods,
+        chosenFoods: chosenFoods,
       }}
     >
       {props.children}
