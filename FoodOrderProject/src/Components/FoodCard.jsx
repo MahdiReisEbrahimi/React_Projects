@@ -5,7 +5,7 @@ import AuthContext from "../Context/Auth-context";
 
 const FoodCard = (props) => {
   const ctx = useContext(AuthContext);
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState(1);
 
   const inputChangeHandler = (event) => {
     setInputValue(event.target.value);
@@ -42,8 +42,10 @@ const FoodCard = (props) => {
             value={inputValue}
             id={`Amount_${props.food.id}`}
             type="number"
-            min={1}
-            max={10}
+            min='1'
+            max='5'
+            step='1'
+            defaultValue='1'
             className="w-10 m-2 bg-blue-300"
           />
           <Button
