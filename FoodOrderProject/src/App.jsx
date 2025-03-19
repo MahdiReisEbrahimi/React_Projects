@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Header from "./Components/Header";
 import Tips from "./Components/Tips";
-import Foods from "./Components/Foods";
+import Foods from "./Components/AvailableFoods/Foods";
 import Cart from "./Components/Cart/Cart";
 import AuthContext from "./Context/Auth-context";
 

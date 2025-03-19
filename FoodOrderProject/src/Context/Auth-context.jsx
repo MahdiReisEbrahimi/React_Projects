@@ -47,25 +47,33 @@ export const AuthContextProvider = (props) => {
     setIsCartClicked(false);
   };
 
+  //==========================================
   const onAddFoods = (id, number) => {
-    setChosenFoods((prevFoods) => {
-      const existingFoodIndex = prevFoods.findIndex((food) => food.id === id);
-
-      if (existingFoodIndex !== -1) {
-        const updatedFoods = [...prevFoods];
-        updatedFoods[existingFoodIndex] = {
-          ...updatedFoods[existingFoodIndex],
-          number: updatedFoods[existingFoodIndex].number + number,
-        };
-        return updatedFoods;
-      } else {
-        const food = foods.find((x) => x.id === id);
-        if (!food) return prevFoods;
-
-        return [...prevFoods, { ...food, number }];
+    let existingFoodIndex = -1;
+    for (let i = 0; i < chosenFoods.length; i++) {
+      if (chosenFoods[i].food.id == id) {
+        existingFoodIndex = i;
+        break;
       }
-    });
+    }
+
+    if (existingFoodIndex == -1) {
+      for (let i = 0; i < foods.length; i++) {
+        if (foods[i].id == id) {
+          setChosenFoods((prevFoods) => {
+            return [{ food: foods[i], number: number }, ...prevFoods];
+          });
+          break;
+        }
+      }
+    } else {
+      //founded index
+      const newChosenFoods = [...chosenFoods];
+      newChosenFoods[existingFoodIndex].number = number;
+      setChosenFoods(newChosenFoods);
+    }
   };
+  //==========================================
 
   return (
     <AuthContext.Provider

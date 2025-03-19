@@ -1,21 +1,13 @@
 import Card from "../UI/Card";
-import CartFoods from "./CartFoods";
 import AuthContext from "../../Context/Auth-context";
 import { useContext, useEffect, useState } from "react";
 import Modal from "../UI/Modal";
+import FinalAccept from "./FinalAccept";
+import ChosenFoodsPrint from "./ChosenFoodsPrint";
+import SumMonyCalculator from "./SumMonyCalculator";
 
 const Cart = () => {
   const ctx = useContext(AuthContext);
-
-  const [sum, setSum] = useState(0);
-
-  useEffect(() => {
-    const totalSum = ctx.chosenFoods.reduce(
-      (acc, food) => acc + food.amount * food.number,
-      0
-    );
-    setSum(totalSum);
-  }, [ctx.chosenFoods]);
 
   return (
     <Modal>
@@ -39,29 +31,8 @@ const Cart = () => {
                     <th className="py-3 px-4 text-center">نام غذا</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {ctx.chosenFoods.length > 0 ? (
-                    ctx.chosenFoods.map((chosenFood) => (
-                      <CartFoods key={chosenFood.id} chosenFood={chosenFood} />
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="text-center py-5 text-gray-400">
-                        🍽️ هنوز هیچ غذایی انتخاب نکردی!
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-                <tfoot>
-                  <tr className="border-t border-gray-700 bg-gray-800">
-                    <th className="py-3 px-4 text-center text-yellow-400">
-                      ${sum}
-                    </th>
-                    <th colSpan="3" className="py-3 px-4 text-white">
-                      جمع کل خرید
-                    </th>
-                  </tr>
-                </tfoot>
+                <ChosenFoodsPrint />
+                <SumMonyCalculator />
               </table>
             </div>
             <button
@@ -70,12 +41,7 @@ const Cart = () => {
             >
               بستن سبد خرید ✖️
             </button>
-            <button
-              onClick={ctx.onSpaceClick}
-              className="mt-2 bg-green-600 hover:bg-green-700 hover:cursor-pointer text-white font-bold py-2 px-6 rounded-lg transition duration-200"
-            >
-              تایید نهایی ✅
-            </button>
+            {ctx.chosenFoods.length > 0 && <FinalAccept />}
           </div>
         </div>
       </Card>

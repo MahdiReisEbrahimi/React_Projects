@@ -1,9 +1,9 @@
-import Card from "./UI/Card";
-import Button from "./UI/Button";
-import { useContext, useState } from "react";
-import AuthContext from "../Context/Auth-context";
+import Card from "../UI/Card";
+import Button from "../UI/Button";
+import { useContext, useState, useEffect } from "react";
+import AuthContext from "../../Context/Auth-context";
 
-const FoodCard = (props) => {
+const FoodPrint = (props) => {
   const ctx = useContext(AuthContext);
   const [inputValue, setInputValue] = useState(1);
 
@@ -13,12 +13,18 @@ const FoodCard = (props) => {
 
   const addFoodHandler = (event) => {
     event.preventDefault();
-    if (inputValue > 0) {
-      ctx.onAddFoods(props.food.id, parseInt(inputValue));
-    } else {
-      alert("please input a valid numbear!");
-    }
+    ctx.onAddFoods(props.food.id, parseInt(inputValue));
   };
+
+  useEffect(() => {
+    let index = -1;
+    for (let i = 0; i < ctx.chosenFoods.length; i++) {
+      if (ctx.chosenFoods[i].food.id == props.food.id) {
+        setInputValue(ctx.chosenFoods[i].number);
+        break;
+      }
+    }
+  }, [ctx.chosenFoods]);
 
   const birabt = () => {};
 
@@ -42,11 +48,11 @@ const FoodCard = (props) => {
             value={inputValue}
             id={`Amount_${props.food.id}`}
             type="number"
-            min='1'
-            max='5'
-            step='1'
-            defaultValue='1'
-            className="w-10 m-2 bg-blue-300"
+            min="1"
+            max="5"
+            step="1"
+            defaultValue="1"
+            className="w-10 m-2 bg-blue-300 p-1 font-bold"
           />
           <Button
             className="mt-2 w-35"
@@ -61,4 +67,4 @@ const FoodCard = (props) => {
   );
 };
 
-export default FoodCard;
+export default FoodPrint;
