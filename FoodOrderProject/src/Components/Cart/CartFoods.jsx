@@ -22,8 +22,7 @@ const CartFoods = (props) => {
         <input
           type="number"
           className="w-10 bg-white text-black p-1"
-          min={1}
-          max={5}
+          min={0}
           value={foodNumber}
           onChange={numberChangeHandler}
         />

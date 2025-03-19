@@ -11,26 +11,26 @@ const AuthContext = React.createContext({
 const foods = [
   {
     name: "کباب تهرون",
-    detail: "maded with fresh meats",
-    amount: 19,
+    detail: "تهیه شده از گوشت تازه",
+    amount: 190000,
     id: 1,
   },
   {
     name: "قرمه سبزی",
-    detail: "maded with fresh meats",
-    amount: 17,
+    detail: "تهیه شده از گوشت تازه",
+    amount: 170000,
     id: 2,
   },
   {
     name: "قیمه",
-    detail: "maded with fresh meats",
-    amount: 12,
+    detail: "تهیه شده از گوشت تازه",
+    amount: 120000,
     id: 3,
   },
   {
     name: "ویژویژک",
-    detail: "maded with fresh meats",
-    amount: 18,
+    detail: "تهیه شده از گوشت تازه",
+    amount: 180000,
     id: 4,
   },
 ];
@@ -75,6 +75,10 @@ export const AuthContextProvider = (props) => {
   };
   //==========================================
 
+  const onRemoveFood = (id) => {
+    setChosenFoods((prevFoods) => prevFoods.filter(food => food.food.id !== id));
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -83,6 +87,7 @@ export const AuthContextProvider = (props) => {
         onCartClick: onCartClick,
         foods: foods,
         onAddFoods: onAddFoods,
+        onRemoveFood: onRemoveFood,
         chosenFoods: chosenFoods,
       }}
     >
