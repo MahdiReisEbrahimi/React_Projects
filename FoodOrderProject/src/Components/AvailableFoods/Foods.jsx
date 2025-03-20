@@ -8,7 +8,6 @@ const Foods = () => {
   return (
     <div className="bg-blue-300 w-4/5 h-200 mt-10 m-auto p-4 overflow-auto rounded-2xl">
       {ctx.foods.map((food) => {
-        
         return <FoodPrint key={food.id} food={food} />;
       })}
     </div>

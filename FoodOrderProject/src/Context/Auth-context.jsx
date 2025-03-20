@@ -33,6 +33,30 @@ const foods = [
     amount: 180000,
     id: 4,
   },
+  {
+    name: "ماست موسیر محلی",
+    detail: "تهیه شده از شیر تازه گاو",
+    amount: 34000,
+    id: 5,
+  },
+  {
+    name: "نوشابه فانتا",
+    detail: "تگری و خوشمزه",
+    amount: 180000,
+    id: 6,
+  },
+  {
+    name: "نوشابه کوکاکولا",
+    detail: "تگری و خوشمزه",
+    amount: 18000,
+    id: 7,
+  },
+  {
+    name: "دوغ عالیس",
+    detail: "تگری و خوشمزه",
+    amount: 13000,
+    id: 8,
+  },
 ];
 
 export const AuthContextProvider = (props) => {
@@ -76,7 +100,9 @@ export const AuthContextProvider = (props) => {
   //==========================================
 
   const onRemoveFood = (id) => {
-    setChosenFoods((prevFoods) => prevFoods.filter(food => food.food.id !== id));
+    setChosenFoods((prevFoods) =>
+      prevFoods.filter((food) => food.food.id !== id)
+    );
   };
 
   return (

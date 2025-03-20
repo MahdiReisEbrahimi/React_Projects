@@ -1,6 +1,6 @@
 import Card from "../UI/Card";
 import AuthContext from "../../Context/Auth-context";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Modal from "../UI/Modal";
 import FinalAccept from "./FinalAccept";
 import ChosenFoodsPrint from "./ChosenFoodsPrint";
@@ -14,17 +14,20 @@ const Cart = () => {
       <Card>
         <div>
           <div className="flex flex-col">
-            <h2 className="text-white text-3xl font-bold text-center mb-4">
+            <h2 className="text-white bg-black p-5 rounded-2xl text-3xl font-bold text-center mb-4">
               🛒 سبد خرید شما
             </h2>
-            <div className="overflow-x-auto">
+            <div
+              className="overflow-y-auto"
+              style={{ maxHeight: "60vh", maxWidth: "100vh" }}
+            >
               <table className="w-full border-collapse border border-gray-700 rounded-lg shadow-md">
                 <thead className="bg-gray-800 text-white">
                   <tr className="border-b border-gray-700">
-                    <th className="py-3 px-4 text-center text-yellow-400">
+                    <th className="py-3 px-4 text-center text-white">
                       جمع کل
                     </th>
-                    <th className="py-3 px-4 text-center text-green-400">
+                    <th className="py-3 px-4 text-center text-white">
                       قیمت فی
                     </th>
                     <th className="py-3 px-4 text-center">تعداد</th>

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MdLocalGroceryStore } from "react-icons/md";
+import AuthContext from "../../Context/Auth-context";
 
 const Button = (props) => {
-  const className = `flex  justify-around items-center hover:bg-blue-300 hover:border-2 border-black hover:text-black p-3 bg-blue-400 rounded-2xl font-bold  cursor-pointer border-2 ${props.className}`;
+  const className = `flex text-1.5xl justify-around items-center hover:bg-blue-300 hover:border-2 border-black hover:text-black p-3 bg-blue-400 rounded-2xl font-bold  cursor-pointer border-2 ${props.className}`;
 
   const ClickHandler = () => {
     props.onClick();
   };
+
+  const ctx = useContext(AuthContext);
+  const [number, setNumber] = useState(0);
 
   return (
     <React.Fragment>
@@ -21,8 +25,15 @@ const Button = (props) => {
         className={className}
         onClick={ClickHandler}
       >
+        {props.hasIcon && (
+          <React.Fragment>
+            <div className="z-20 bg-blue-100 items-center text-black text-2xl border-1 border-black  mr-2 p-2 rounded-2xl w-1xl">
+              {ctx.chosenFoods.length}
+            </div>
+            <MdLocalGroceryStore style={{ fontSize: "30px" }} />
+          </React.Fragment>
+        )}
         {props.text}
-        {props.hasIcon && <MdLocalGroceryStore />}
       </motion.button>
     </React.Fragment>
   );

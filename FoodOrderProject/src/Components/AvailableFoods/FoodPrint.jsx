@@ -24,7 +24,7 @@ const FoodPrint = (props) => {
             inputValue={ChildToFatherInput}
             food={props.food}
             firstInputValue={0}
-            hasAddButton = {true}
+            hasAddButton={true}
           />
         </form>
       </div>
@@ -34,9 +34,7 @@ const FoodPrint = (props) => {
         </h2>
         <p className="text-blue-200 pt-1">{props.food.detail}</p>
         <div className="flex items-center">
-          <h1 className="text-white text-1xl pt-2 ">
-            {`${props.food.amount}`}
-          </h1>
+          <h1 className="text-white text-1xl pt-2 ">{props.food.amount.toLocaleString()}</h1>
           <span className="text-white text-xs pt-1 pr-1">تومان</span>
         </div>
       </div>
