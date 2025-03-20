@@ -1,13 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../Context/Auth-context";
+import { CgAdd } from "react-icons/cg";
+import { FiMinusCircle } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { FaRegTrashAlt } from "react-icons/fa";
+import CostomNumberInput from "../UI/CostomNumberInput";
 
 const CartFoods = (props) => {
-  const [foodNumber, setFoodNumber] = useState(props.chosenFood.number);
   const ctx = useContext(AuthContext);
 
-  const numberChangeHandler = (event) => {
-    setFoodNumber(event.target.value);
-    ctx.onAddFoods(props.chosenFood.food.id, parseInt(event.target.value));
+  const ChildToFatherInput = (passedInputValue) => {
+    // setFoodNumber(passedInputValue);
+
+    useEffect(() => {
+      if (passedInputValue === 0) {
+        ctx.onAddFoods(props.chosenFood.food.id, passedInputValue);
+        ctx.onRemoveFood(props.chosenFood.food.id);
+      } else ctx.onAddFoods(props.chosenFood.food.id, passedInputValue);
+    }, [passedInputValue]);
   };
 
   return (
@@ -19,12 +29,11 @@ const CartFoods = (props) => {
         ${props.chosenFood.food.amount}
       </td>
       <td className="py-4 px-6 text-white font-bold text-lg text-center">
-        <input
-          type="number"
-          className="w-10 bg-white text-black p-1"
-          min={0}
-          value={foodNumber}
-          onChange={numberChangeHandler}
+        <CostomNumberInput
+          food={props.chosenFood.food}
+          inputValue={ChildToFatherInput}
+          firstInputValue={props.chosenFood.number}
+          hasAddButton={false}
         />
       </td>
       <td className="py-4 px-6 text-white text-lg font-bold text-center">
