@@ -1,3 +1,4 @@
+import Button from "../UI/Button";
 import Input from "../UI/Input";
 
 export default function Form() {
@@ -6,15 +7,15 @@ export default function Form() {
       <h1>Welcome on board!</h1>
       <p>We just need a little bit of data from you.</p>
       <form>
-        <Input labelText={"EMAIL"} type={"email"} />
+        <Input labelText={"EMAIL"} type={"email"} id={1} />
         <div className="flex justify-between">
-          <Input labelText={"PASSWORD"} type={"number"} />
-          <Input labelText={"CONFIRM PASSWORD"} type={"number"} />
+          <Input labelText={"PASSWORD"} type={"number"} id={2} />
+          <Input labelText={"CONFIRM PASSWORD"} type={"number"} id={3} />
         </div>
         <hr className="mt-5 mb-5" />
         <div className="flex justify-between">
-          <Input labelText={"First Name"} type={"text"} />
-          <Input labelText={"Last Name"} type={"text"} />
+          <Input labelText={"First Name"} type={"text"} id={4} />
+          <Input labelText={"Last Name"} type={"text"} id={5} />
         </div>
         <div className="flex flex-col mt-2 mb-2">
           <label htmlFor="cars" className="text-left text-[13px]">
@@ -40,7 +41,7 @@ export default function Form() {
               id="check1"
               type="checkbox"
             />
-            <label htmlFor=" check1">Google</label>
+            <label htmlFor="check1">Google</label>
           </div>
           <div className="flex items-center">
             <input
@@ -48,7 +49,7 @@ export default function Form() {
               id="check2"
               type="checkbox"
             />
-            <label htmlFor="check1">Telegram</label>
+            <label htmlFor="check2">Telegram</label>
           </div>
           <div className="flex items-center">
             <input
@@ -56,22 +57,20 @@ export default function Form() {
               id="check3"
               type="checkbox"
             />
-            <label htmlFor="check1">Other</label>
+            <label htmlFor="check3">Other</label>
           </div>
         </div>
         <div className="flex items-center mt-4">
           <input
             className="align-middle p-1 mr-1.5"
-            id="check3"
+            id="check4"
             type="checkbox"
           />
-          <label htmlFor="check1">I Agree with term of use.</label>
+          <label htmlFor="check4">I Agree with term of use.</label>
         </div>
         <div>
           <input type="reset" />
-          <button className="bg-green-700 p-2 cursor-pointer ml-5 mt-5 rounded-[2px]">
-            sign up
-          </button>
+          <Button buttonText="sign up" type="submit" />
         </div>
       </form>
     </div>
