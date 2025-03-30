@@ -7,7 +7,7 @@ export default function App() {
     <div className="m-auto w-3/4 text-center mt-10">
       <Header />
       <SimpleForm />
-      <Form />
+      {/* <Form /> */}
     </div>
   );
 }
