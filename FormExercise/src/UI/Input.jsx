@@ -1,28 +1,17 @@
-export default function Input({
-  type,
-  labelText,
-  id,
-  onChangeValue,
-  parentvalue,
-}) {
-  function inputChangeHandler(event) {
-    onChangeValue(event.target.value);
-  }
-
+export default function Input({ type, labelText, id, name, isDataOk }) {
   return (
     <div className="flex flex-col mt-2 mb-2">
       <label className="text-left text-[13px]" htmlFor={id}>
         {labelText}
-        {parentvalue.trim().length < 2 ? " *" : ""}
+        {isDataOk || "  *"}
       </label>
       <input
-        value={parentvalue || ""}
-        onChange={inputChangeHandler}
-        className={`${
-          parentvalue.trim().length === 0 ? "border-red-600" : "border-white"
-        } border-[2px] bg-gray-300 w-4/5 rounded-[3px] text-black p-0.5`}
+        className={` ${
+          isDataOk ? "border-white" : "border-red-300 bg-red-100"
+        } border-[2px] bg-gray-300  rounded-[3px] text-black p-0.5 focus:bg-gray-300 focus:border-gray-300`}
         type={type}
         id={id}
+        name={name}
       />
     </div>
   );
