@@ -1,4 +1,4 @@
-export default function Input({ type, labelText, id, name, isDataOk }) {
+export default function Input({ labelText, id, isDataOk, ...props }) {
   return (
     <div className="flex flex-col mt-2 mb-2">
       <label className="text-left text-[13px]" htmlFor={id}>
@@ -9,9 +9,8 @@ export default function Input({ type, labelText, id, name, isDataOk }) {
         className={` ${
           isDataOk ? "border-white" : "border-red-300 bg-red-100"
         } border-[2px] bg-gray-300  rounded-[3px] text-black p-0.5 focus:bg-gray-300 focus:border-gray-300`}
-        type={type}
         id={id}
-        name={name}
+        {...props}
       />
     </div>
   );

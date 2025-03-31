@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import Alert from "../UI/Alert";
+import { hasMinimumLengthOf } from "../util/inputValidationFn";
 
 export default function SimpleForm() {
   const [isInputOk, setIsInputOk] = useState({
@@ -12,9 +13,13 @@ export default function SimpleForm() {
 
   function submitHandler(event) {
     event.preventDefault();
+    console.log(event.target);
     const fd = new FormData(event.target);
     const data = Object.fromEntries(fd.entries());
-    if (data.fName.trim().length > 1 && data.lName.trim().length > 1) {
+    if (
+      hasMinimumLengthOf(2, data.fName) &&
+      hasMinimumLengthOf(2, data.lName)
+    ) {
       console.log(
         "submited!",
         "First Name : ",
@@ -29,13 +34,13 @@ export default function SimpleForm() {
       });
       event.target.reset();
     } else {
-      if (data.fName.trim().length < 2)
+      if (!hasMinimumLengthOf(2, data.fName))
         setIsInputOk((prevData) => ({
           fName: false,
           lName: prevData.lName,
           alert: true,
         }));
-      if (data.lName.trim().length < 2)
+      if (!hasMinimumLengthOf(2, data.lName))
         setIsInputOk((prevData) => ({
           fName: prevData.fName,
           lName: false,
@@ -61,19 +66,20 @@ export default function SimpleForm() {
         onSubmit={submitHandler}
         className="bg-gray-800 mb-20 mt-20 p-10 text-white flex flex-col"
       >
+        <div>This one is made with browser APIs and easier things.</div>
         <Input
           labelText={"First Name"}
-          type={"text"}
           id={16}
-          name={"fName"}
           isDataOk={isInputOk.fName}
+          name={"fName"}
+          type={"text"}
         />
         <Input
           labelText={"Last Name"}
-          type={"text"}
           id={15}
-          name={"lName"}
           isDataOk={isInputOk.lName}
+          name={"lName"}
+          type={"text"}
         />
         <div className="h-5"></div>
         <Button buttonText={"sign in"} type={"submit"} onClick={noMatter} />
