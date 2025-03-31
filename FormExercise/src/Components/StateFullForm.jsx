@@ -37,6 +37,9 @@ export default function StateFullForm() {
       nameResetHandler();
       emailResetHandler();
     } else {
+      if (hasEmilError || isEmpty(emailValue)) emailBlurHandler();
+      if (hasNameError || isEmpty(nameValue)) nameBlurHandler();
+
       return;
     }
   }
