@@ -32,14 +32,14 @@ export const AuthContextProvider = (props) => {
     setOpinion((prevOpinions) => [data, ...prevOpinions]);
   }
 
-  function agreeClickHandler(id) {
+  async function agreeClickHandler(id) {
     const changedOpinion = opinions.map((opinion) =>
       opinion.id === id ? { ...opinion, score: opinion.score + 1 } : opinion
     );
     setOpinion(changedOpinion);
   }
 
-  function disAgreeClickHandler(id) {
+  async function disAgreeClickHandler(id) {
     const changedOpinion = opinions.map((opinion) =>
       opinion.id === id ? { ...opinion, score: opinion.score - 1 } : opinion
     );

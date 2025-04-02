@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
 import { useContext } from "react";
@@ -6,7 +5,6 @@ import AuthContex from "../../Context/Auth-context";
 import { useActionState } from "react";
 
 export default function SurveyForm() {
-
   const ctx = useContext(AuthContex);
 
   function submitAction(prevFormState, formData) {
@@ -46,7 +44,7 @@ export default function SurveyForm() {
         .map((char, index) => (index === 0 ? char.toUpperCase() : char))
         .join(""),
       id: Math.random() * 1000,
-      score : 0 ,
+      score: 0,
     });
 
     return { errors: null };
