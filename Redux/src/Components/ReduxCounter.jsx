@@ -1,36 +1,39 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
-export default function ReduxCounter() {
-  const counter = useSelector((state) => state.counter);
+import { counterActions } from "../Store";
 
-  const showCounter = useSelector((state) => state.showCounter);
+export default function ReduxCounter() {
   const dispatch = useDispatch();
+  const counter = useSelector((state) => state.counter);
+  const showCounter = useSelector((state) => state.showCounter);
 
   const inputRef = useRef();
 
   function incrementHandler() {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   }
 
   function decrementHandler() {
-    dispatch({ type: "dec" });
+    dispatch(counterActions.decrement());
   }
 
   function increaseHandler() {
-    dispatch({ type: "increase", amount: Number(inputRef.current.value) });
+    dispatch(counterActions.increase(Number(inputRef.current.value)));
     inputRef.current.value = "";
   }
 
   function deleteShowCounterHandler() {
-    dispatch({ type: "deleteShowCounter" });
+    dispatch(counterActions.deleteShowCounter());
   }
 
   return (
     <div className="rounded-2xl font-bold w-1/2 bg-white shadow-lg shadow-gray-400 m-auto flex flex-col items-center p-10 text-purple-700">
       {showCounter && (
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <p className="p-3 text-2xl mb-7">REDUX COUNTER</p>
-          <h2>{counter}</h2>
+          <h2 className="bg-blue-300 p-5 rounded-2xl text-2xl font-bold text-black">
+            {counter}
+          </h2>
           <div className="flex flex-col justify-center w-full">
             <button
               onClick={incrementHandler}
@@ -38,15 +41,15 @@ export default function ReduxCounter() {
             >
               increment (+1)
             </button>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center justify-center">
               <button
                 onClick={increaseHandler}
-                className="m-2 cursor-pointer hover:bg-purple-700 bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold"
+                className=" h-15 m-2 cursor-pointer hover:bg-purple-700 bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold"
               >
                 increase by
               </button>
               <input
-                className=" text-black bg-blue-300 rounded-2xl m-2 h-15 p-2"
+                className="w-1/2 text-black bg-blue-300 rounded-2xl m-2 h-15 p-2"
                 type="number"
                 ref={inputRef}
               />
