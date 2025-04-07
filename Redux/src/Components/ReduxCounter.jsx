@@ -9,58 +9,62 @@ export default function ReduxCounter() {
 
   const inputRef = useRef();
 
-  function incrementHandler() {
+  function incrementHandler(event) {
+    event.preventDefault();
     dispatch(counterActions.increment());
   }
 
-  function decrementHandler() {
+  function decrementHandler(event) {
+    event.preventDefault();
     dispatch(counterActions.decrement());
   }
 
-  function increaseHandler() {
+  function increaseHandler(event) {
+    event.preventDefault();
     dispatch(counterActions.increase(Number(inputRef.current.value)));
     inputRef.current.value = "";
   }
 
-  function deleteShowCounterHandler() {
+  function deleteShowCounterHandler(event) {
+    event.preventDefault();
     dispatch(counterActions.deleteShowCounter());
   }
 
   return (
-    <div className="rounded-2xl font-bold w-1/2 bg-white shadow-lg shadow-gray-400 m-auto flex flex-col items-center p-10 text-purple-700">
+    <div className="text-white rounded-lg w-1/2 m-auto border-2 border-white p-5 mt-25 flex flex-col items-center">
       {showCounter && (
         <div className="flex flex-col justify-center items-center">
-          <p className="p-3 text-2xl mb-7">REDUX COUNTER</p>
-          <h2 className="bg-blue-300 p-5 rounded-2xl text-2xl font-bold text-black">
+          <p className="p-3 text-2xl mb-3">REDUX COUNTER</p>
+          <h2 className="bg-blue-300 p-2 rounded-lg text-2xl font-bold text-black">
             {counter}
           </h2>
-          <div className="flex flex-col justify-center w-full">
+          <form className="flex flex-col justify-center w-full">
             <button
               onClick={incrementHandler}
-              className=" m-2 cursor-pointer hover:bg-purple-700 bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold"
+              className="m-2 cursor-pointer hover:bg-blue-300 bg-white p-3 rounded-2xl mt-5 text-black font-bold"
             >
               increment (+1)
             </button>
-            <div className="flex flex-row items-center justify-center">
-              <button
-                onClick={increaseHandler}
-                className=" h-15 m-2 cursor-pointer hover:bg-purple-700 bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold"
-              >
-                increase by
-              </button>
+            <button
+              onClick={decrementHandler}
+              className="m-2 mt-0 cursor-pointer hover:bg-blue-300 bg-white p-3 rounded-2xl text-black font-bold"
+            >
+              Decrement (-1)
+            </button>
+            <div className="flex flex-col m-2 mt-0 mb-4 cursor-pointer bg-white p-3 rounded-2xl text-black font-bold">
               <input
-                className="w-1/2 text-black bg-blue-300 rounded-2xl m-2 h-15 p-2"
+                className="w-full text-white bg-gray-800 rounded-2xl h-13 p-3"
                 type="number"
                 ref={inputRef}
               />
+              <button
+                onClick={increaseHandler}
+                className="w-full cursor-pointer bg-gray-800 p-3 rounded-2xl mt-1 text-white font-bold"
+              >
+                Increase By
+              </button>
             </div>
-            <button
-              onClick={decrementHandler}
-              className="m-2 cursor-pointer hover:bg-purple-700 bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold"
-            >
-              decrement (-1)
-            </button>
-          </div>
+          </form>
         </div>
       )}
       <button
@@ -69,7 +73,7 @@ export default function ReduxCounter() {
           showCounter
             ? "hover:bg-red-700 bg-red-500"
             : "hover:bg-green-800 bg-green-600"
-        } bg-gray-800 p-3 rounded-2xl mt-5 text-white font-bold`}
+        } w-4/5 bg-gray-800 p-3 rounded-2xl text-white font-bold`}
       >
         {showCounter ? "REMOVE COUNTER" : "SHOW COUNTER"}
       </button>
