@@ -1,4 +1,4 @@
-import { useActionState, useEffect } from "react";
+import { useActionState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../Store";
 
@@ -30,13 +30,12 @@ export default function LoginForm() {
       }
     });
 
-    if (isUserPassOk)
+    if (isUserPassOk) {
+      dispatch(authActions.login(enteredUser));
       return {
         errors: null,
-        enteredValues: { enteredUser, enteredPass },
-        isUserPassOk,
       };
-    else {
+    } else {
       errors.push("Wrong UserName or Password!");
       return {
         errors,
@@ -48,11 +47,6 @@ export default function LoginForm() {
   const [formState, formAction] = useActionState(loginAction, {
     errors: null,
   });
-
-  useEffect(() => {
-    if (formState.isUserPassOk)
-      dispatch(authActions.login(formState?.enteredValues?.enteredUser));
-  }, [formState?.isUserPassOk, dispatch]);
 
   return (
     <form
@@ -68,11 +62,7 @@ export default function LoginForm() {
           name="user"
           id="user"
           className="w-full mb-3 bg-white rounded-lg p-2 pt-1 pb-1"
-          defaultValue={
-            formState?.isUserPassOk
-              ? ""
-              : formState?.enteredValues?.enteredUser || ""
-          }
+          defaultValue={formState?.enteredValues?.enteredUser || ""}
         />
       </div>
 
@@ -85,11 +75,7 @@ export default function LoginForm() {
           name="pass"
           id="pass"
           className="w-full bg-white rounded-lg p-2 pt-1 pb-1"
-          defaultValue={
-            formState?.isUserPassOk
-              ? ""
-              : formState?.enteredValues?.enteredPass || ""
-          }
+          defaultValue={formState?.enteredValues?.enteredPass || ""}
         />
       </div>
 
