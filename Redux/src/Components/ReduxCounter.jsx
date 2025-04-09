@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
-import { counterActions } from "../Store";
+import { counterActions } from "../Store/counter";
 
 export default function ReduxCounter() {
   const dispatch = useDispatch();

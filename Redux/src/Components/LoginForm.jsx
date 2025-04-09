@@ -1,6 +1,6 @@
 import { useActionState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../Store";
+import { authActions } from "../Store/auth";
 
 export default function LoginForm() {
   const users = useSelector((state) => state.auth.users);

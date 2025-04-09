@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { authActions } from "../Store";
+import { authActions } from "../Store/auth";
 
 export default function Header() {
   const isLogedIn = useSelector((state) => state.auth.isLogedIn);
