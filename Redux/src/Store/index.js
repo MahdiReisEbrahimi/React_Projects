@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-const counterInitialState = { counter: 0, showCounter: true };
+const counterInitialState = { counter: 0, showCounter: false };
 
 const counterSlice = createSlice({
   name: "counter",
