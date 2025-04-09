@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../Store";
 
 export default function LoginForm() {
-  const isLogedIn = useSelector((state) => state.auth.isLogedIn);
   const users = useSelector((state) => state.auth.users);
 
   const dispatch = useDispatch();
