@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import RootLayout from "./Components/RootLayout";
 import Products from "./Components/Products";
 import HomePage from "./Components/HomePage";
-
+import ProductDetail from "./Components/ProductDetail";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -27,10 +27,8 @@ export default function App() {
           path: "/counter",
           element: <ReduxCounter />,
         },
-        {
-          path: "/product",
-          element: <Products />,
-        },
+        { path: "/product", element: <Products /> },
+        { path: "/product/:productId", element: <ProductDetail /> },
       ],
     },
   ]);
