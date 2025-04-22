@@ -43,7 +43,7 @@ const router = createBrowserRouter([
             path: "/events",
             element: <EventsPage />,
             loader: async () => {
-              const response = await fetch("http://localhost:8000/events");
+              const response = await fetch("http://localhost:8080/events");
               if (!response.ok) {
               } else {
                 const resData = await response.json();
@@ -66,11 +66,7 @@ const router = createBrowserRouter([
 // BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

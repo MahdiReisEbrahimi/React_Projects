@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import EventsList from "../components/EventsList";
 
 // const EVENTS = [
 //   { eventId: 1, title: "Iran 2025" },
@@ -14,14 +15,7 @@ export default function EventsPage() {
     <>
       <h1 style={{ font: "2rem", color: "white" }}>This is Events Page</h1>
       <div style={{ margin: "2rem" }}>
-        <ul>
-          {events.map((event) => (
-            <li key={event.key}>
-              <Link to={`/events/${event.id}`}>{event.title}</Link>
-            </li>
-          ))}
-        </ul>
-        <div>{}</div>
+        <EventsList events={events} />
       </div>
     </>
   );
