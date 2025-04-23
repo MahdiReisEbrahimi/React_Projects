@@ -3,6 +3,7 @@ import HomePage_Slider from "../Components/HomePage/HomePage_Slider";
 import HomePage_SearchBar from "../Components/HomePage/HomePage_SearchBar";
 import HomePage_Events from "../Components/HomePage/HomePage_Events";
 import HomePage_Popular from "../Components/HomePage/HomePage_Popular";
+import HomePage_Footer from "../Components/HomePage/HomePage_Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <HomePage_Slider />
       <HomePage_Popular />
       <HomePage_Events />
+      <HomePage_Footer />
 
       <div>hello. This is HomePage.</div>
     </>
