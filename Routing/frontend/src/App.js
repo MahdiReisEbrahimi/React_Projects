@@ -8,6 +8,7 @@ import Root from "./dummyComponents/Root";
 import EventRootLayout from "./dummyComponents/EventRootLayout";
 import { eventsLoader } from "./dummyComponents/EventsPage";
 import Error from "./dummyComponents/Error";
+import { eventDetailLoader } from "./dummyComponents/EventDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
             element: <EventsPage />,
             loader: eventsLoader,
           },
-          { path: "/events/:eventId", element: <EventDetailPage /> },
+          {
+            path: "/events/:eventId",
+            element: <EventDetailPage />,
+            loader: eventDetailLoader,
+          },
           { path: "/events/new", element: <NewEventPage /> },
           { path: "/events/:eventId/edit", element: <EditEventPage /> },
         ],
