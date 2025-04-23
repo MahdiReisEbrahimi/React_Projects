@@ -1,30 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiDiscountPercentLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 export default function HomePage_Events() {
   const [hours, setHours] = useState(0);
   const [min, setMin] = useState(0);
   const [second, setSecond] = useState(0);
 
-  var countDownDate = new Date("Jan 5, 2026 1:37:25").getTime();
-  var x = setInterval(function () {
-    var now = new Date().getTime();
+  const events = useSelector((state) => state.events);
 
-    var distance = countDownDate - now;
+  useEffect(() => {
+    const countDownDate = new Date("Jan 5, 2026 1:37:25").getTime();
 
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    setHours(hours);
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    setMin(minutes);
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    setSecond(seconds);
-  }, 1000);
+    const x = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setHours(hours);
+      setMin(minutes);
+      setSecond(seconds);
+    }, 1000);
+
+    return () => clearInterval(x);
+  }, []);
 
   return (
-    <div className="h-50 bg-blue-200 p-1">
+    <div className="bg-blue-200 p-1">
       <div className="flex items-center justify-center mt-1">
         <span className="ml-1">
           <RiDiscountPercentLine />
@@ -43,6 +50,26 @@ export default function HomePage_Events() {
             {hours < 10 ? "0" + hours : hours}
           </div>
         </div>
+      </div>
+      <div className="m-3 h-40 overflow-x-auto">
+        <ul className="flex h-40 w-max">
+          {events.map((event) => (
+            <li
+              key={event.id}
+              className="rounded-lg ml-2 border p-1 w-30 flex flex-col justify-around items-center shrink-0"
+            >
+              <img
+                src={event.imageUrl}
+                alt={event.eventName}
+                className="h-1/2 rounded-lg"
+              />
+              {event.eventName}
+              <button className="border rounded-lg p-1 cursor-pointer text-sm bg-blue-400 text-white">
+                اطلاعات بیشتر
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
