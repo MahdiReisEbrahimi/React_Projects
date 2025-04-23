@@ -13,7 +13,7 @@ export default function HomePage_Header() {
       slidesPerView={1}
       loop={true}
       autoplay={{ delay: 1000 }}
-      className="h-30"
+      className="h-30 mb-4"
     >
       <SwiperSlide>
         <img src={a1} alt="Slide 1" />
