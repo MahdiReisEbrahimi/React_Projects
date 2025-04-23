@@ -12,7 +12,7 @@ export default function HomePage_Header() {
       spaceBetween={30}
       slidesPerView={1}
       loop={true}
-      autoplay={{ delay: 1000 }}
+      autoplay={{ delay: 3000 }}
       className="h-30 mb-4"
     >
       <SwiperSlide>

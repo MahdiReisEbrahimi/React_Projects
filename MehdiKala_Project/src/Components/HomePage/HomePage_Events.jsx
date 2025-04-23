@@ -25,7 +25,7 @@ export default function HomePage_Events() {
 
   return (
     <div className="h-50 bg-blue-200 p-1">
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mt-1">
         <span className="ml-1">
           <RiDiscountPercentLine />
         </span>
