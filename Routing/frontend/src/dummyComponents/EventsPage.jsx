@@ -20,7 +20,9 @@ export default function EventsPage() {
 export async function eventsLoader() {
   const response = await fetch("http://localhost:8080/eventsss");
   if (!response.ok) {
-    return { isResOk: false, errorMessage: "An error occurred!" };
+    throw new Response(JSON.stringify({ message: "couldnt fetch events." }), {
+      status: 505,
+    });
   } else {
     const resData = await response.json();
     return { isResOk: true, resData };

@@ -7,11 +7,13 @@ import EditEventPage from "./dummyComponents/EditEventPage";
 import Root from "./dummyComponents/Root";
 import EventRootLayout from "./dummyComponents/EventRootLayout";
 import { eventsLoader } from "./dummyComponents/EventsPage";
+import Error from "./dummyComponents/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <Error />,
     children: [
       { path: "/", element: <HomePage /> },
       {
