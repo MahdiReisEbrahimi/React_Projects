@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
 import EventsList from "../components/EventsList";
 
-// const EVENTS = [
-//   { eventId: 1, title: "Iran 2025" },
-//   { eventId: 2, title: "Germany 2024" },
-//   { eventId: 3, title: "Iraq 2025" },
-//   { eventId: 4, title: "America 2025" },
-// ];
-
 export default function EventsPage() {
-  const events = useLoaderData();
+  const data = useLoaderData();
+  if (!data.isResOk) {
+    return <p>{data.errorMessage}</p>;
+  }
+  const events = data.resData.events;
   return (
     <>
       <h1 style={{ font: "2rem", color: "white" }}>This is Events Page</h1>
@@ -19,4 +15,14 @@ export default function EventsPage() {
       </div>
     </>
   );
+}
+
+export async function eventsLoader() {
+  const response = await fetch("http://localhost:8080/eventsss");
+  if (!response.ok) {
+    return { isResOk: false, errorMessage: "An error occurred!" };
+  } else {
+    const resData = await response.json();
+    return { isResOk: true, resData };
+  }
 }
