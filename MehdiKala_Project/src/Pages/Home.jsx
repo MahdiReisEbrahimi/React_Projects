@@ -14,8 +14,6 @@ export default function Home() {
       <HomePage_Popular />
       <HomePage_Events />
       <HomePage_Footer />
-
-      <div>hello. This is HomePage.</div>
     </div>
   );
 }
