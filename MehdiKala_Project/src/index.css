@@ -10,3 +10,9 @@
 body {
   font-family: "Vazirmatn", sans-serif;
 }
+
+html,
+body,
+#root {
+  height: 100%;
+}

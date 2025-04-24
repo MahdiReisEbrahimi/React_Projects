@@ -2,9 +2,9 @@ import MainNavigator from "../Components/MainNavigator";
 import { Outlet } from "react-router-dom";
 export default function RootLayout() {
   return (
-    <>
-      <MainNavigator />
+    <div className="min-h-screen pb-[4rem]">
       <Outlet />
-    </>
+      <MainNavigator />
+    </div>
   );
 }

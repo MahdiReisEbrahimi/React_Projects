@@ -7,7 +7,7 @@ import HomePage_Footer from "../Components/HomePage/HomePage_Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="h-screen overflow-auto">
       <HomePage_Header />
       <HomePage_SearchBar />
       <HomePage_Slider />
@@ -16,6 +16,6 @@ export default function Home() {
       <HomePage_Footer />
 
       <div>hello. This is HomePage.</div>
-    </>
+    </div>
   );
 }

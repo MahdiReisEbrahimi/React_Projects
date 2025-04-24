@@ -4,25 +4,36 @@ import { IoIosArrowUp } from "react-icons/io";
 
 export default function HomePage_Footer() {
   const [guide, setGuide] = useState(false);
+  const [customerRihgts, setCustomerRihgts] = useState(false);
 
-  function clickHandler() {
-    if (guide === true) setGuide(false);
-    else setGuide(true);
+  function clickHandler(input) {
+    switch (input) {
+      case "guide":
+        setGuide((prev) => !prev);
+        break;
+
+      case "rights":
+        setCustomerRihgts((prev) => !prev);
+        break;
+    }
   }
 
   return (
     <footer className="p-3">
-      <div className="flex justify-between items-center w-7/8 m-auto">
+      <div
+        onClick={() => clickHandler("guide")}
+        className="flex justify-between items-center w-7/8 m-auto"
+      >
         <div className="m-1">راهنمای خرید از مهدی کالا</div>
         {guide ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </div>
       <hr />
       <div
-        onClick={clickHandler}
+        onClick={() => clickHandler("rights")}
         className="flex justify-between items-center w-7/8 m-auto"
       >
         <div className="m-1">حقوق مشتریان</div>
-        {guide ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        {customerRihgts ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </div>
       {guide && (
         <p className="w-4/5 m-auto text-sm">
