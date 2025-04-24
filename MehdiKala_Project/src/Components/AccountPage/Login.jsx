@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { usersActions } from "../../store/users";
+import { PiHashStraight } from "react-icons/pi";
 
 export default function Login() {
   const [enteredPhone, setEnteredPhone] = useState(false);
   const [isuserLogedInBefore, setIsuserLogedInBefore] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,6 +19,10 @@ export default function Login() {
 
   function phoneNumberLoginHandler() {
     console.log(phoneNumberRef.current.value);
+    if (phoneNumberRef.current.value.length !== 11) {
+      setHasError(true);
+      return;
+    }
     const lastUser = users.filter(
       (user) => user.phoneNumber === phoneNumberRef.current.value
     );
@@ -24,6 +30,7 @@ export default function Login() {
       setIsuserLogedInBefore(true);
     }
     setEnteredPhone(phoneNumberRef.current.value);
+    setHasError(false);
   }
 
   function passwordLoginHandler() {
@@ -38,7 +45,7 @@ export default function Login() {
         dispatch(usersActions.onlineUser(user));
         navigate("/account");
       } else {
-        alert("رمز اشتباهه یا چنین کاربری وجود نداره.");
+        setHasError(true);
       }
     } else {
       dispatch(
@@ -67,11 +74,19 @@ export default function Login() {
             لطفا شماره موبایل خود را وارد کنید
           </label>
           <input
-            className="text-center w-full mb-1 bg-blue-100 border-b-2 p-2 rounded-lg"
+            className={`text-center w-full mb-1 bg-blue-100 border-b-2 ${
+              hasError && "border-red-900"
+            } p-2 rounded-lg`}
             type="number"
+            step={1}
             id="phone_number"
             ref={phoneNumberRef}
           />
+          {hasError && (
+            <p className="text-sm mb-1 text-red-900 font-bold">
+              لطفا شماره موبایل خود را به درستی وارد کنید.
+            </p>
+          )}
           <button
             onClick={phoneNumberLoginHandler}
             className="text-center cursor-pointer w-full mb-1 bg-blue-300 p-2 rounded-lg"
@@ -90,11 +105,18 @@ export default function Login() {
               : "رمز اکانت خود را تنظیم کنید. ( رمز صحیح شامل اعداد و حروف انگلیسی به همراه یکی از علامت های '!@#$%&*' است.  )"}
           </label>
           <input
-            className="text-center w-full mb-1 bg-blue-100 border-b-2 p-2 rounded-lg"
+            className={`text-center w-full mb-1 bg-blue-100 border-b-2 ${
+              hasError && "border-red-900"
+            } p-2 rounded-lg`}
             type="text"
             id="phone_number"
             ref={passwordRef}
           />
+          {hasError && (
+            <p className="text-sm mb-1 text-red-900 font-bold">
+              پسورد نادرست است.
+            </p>
+          )}
           <button
             onClick={passwordLoginHandler}
             className="text-center cursor-pointer w-full mb-1 bg-blue-300 p-2 rounded-lg"
