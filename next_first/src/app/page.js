@@ -1,5 +1,4 @@
 import FoodPhotoSlider from "@/components/FoodPhotoSlider";
-import Link from "next/link";
 
 export default function Home() {
   return (

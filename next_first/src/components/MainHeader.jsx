@@ -1,6 +1,7 @@
 import Link from "next/link";
 import logo from "../../assets/logo.png";
 import Image from "next/image";
+import NavLink from "./NavLink";
 
 export default function MainHeader() {
   return (
@@ -17,20 +18,10 @@ export default function MainHeader() {
       <nav>
         <ul className="flex justify-between">
           <li>
-            <Link
-              href={"/meals"}
-              className="p-2 ml-2 mr-2 bg-orange-400 rounded-lg text-black font-bold hover:bg-orange-300"
-            >
-              Browser Meals
-            </Link>
+            <NavLink href={"/meals"} text={"Browser Meals"} />
           </li>
           <li>
-            <Link
-              href={"/community"}
-              className="p-2 ml-2 mr-2 bg-orange-400 rounded-lg text-black font-bold hover:bg-orange-300"
-            >
-              Foodies Community
-            </Link>
+            <NavLink href={"/community"} text={"Foodies Community"} />
           </li>
         </ul>
       </nav>
