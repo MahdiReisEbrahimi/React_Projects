@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { usersActions } from "../../store/users";
-import { PiHashStraight } from "react-icons/pi";
 
 export default function Login() {
   const [enteredPhone, setEnteredPhone] = useState(false);

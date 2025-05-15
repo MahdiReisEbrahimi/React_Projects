@@ -21,6 +21,7 @@ export default function Products() {
       <Link to={"/product/p1"}>p1</Link>
       {PRODUCTS.map((product) => (
         <Link
+          key={product.id}
           className="flex flex-col text-center"
           to={`/product/${product.id}`}
         >
