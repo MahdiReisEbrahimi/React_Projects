@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { deleteMealsWithInvalidImageUrls } from "../../../lib/meals";
 
 export default function MealItem({
   title,
@@ -9,8 +10,11 @@ export default function MealItem({
   creator,
   content,
 }) {
+  deleteMealsWithInvalidImageUrls();
   return (
     <div>
+      {/* {console.log("Meal image:", image)} */}
+
       <Image src={image} width={200} height={110} alt={slug} />
       <h3 className="font-bold text-lg">{title}</h3>
       <p className="text-sm mb-1">{summary}</p>
