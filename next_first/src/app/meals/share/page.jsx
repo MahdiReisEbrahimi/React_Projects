@@ -3,6 +3,11 @@ import ImagePicker from "@/components/Meals/image-picker";
 import { shareMeal } from "@/../lib/actions";
 import SubmitButton from "@/components/Meals/SubmitButton";
 
+export const metadata = {
+  title: "Share Food",
+  description: "Sharing foods to other peoples.",
+};
+
 export default function ShareMealsPage() {
   return (
     <div className="mt-20 m-10">

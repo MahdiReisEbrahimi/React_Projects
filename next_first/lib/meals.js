@@ -50,12 +50,3 @@ export async function saveMeal(meal) {
   `
   ).run(meal);
 }
-
-
-export function deleteMealsWithInvalidImageUrls() {
-  const result = db
-    .prepare(`DELETE FROM meals WHERE image NOT LIKE '/%'`)
-    .run();
-
-  console.log(`✅ Deleted ${result.changes} meals with invalid image URLs`);
-}

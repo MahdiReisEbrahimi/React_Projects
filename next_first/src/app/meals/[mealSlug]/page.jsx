@@ -2,6 +2,19 @@ import { notFound } from "next/navigation";
 import { getMeal } from "../../../../lib/meals";
 import Image from "next/image";
 
+export async function generateMetadata({ params }) {
+  const meal = getMeal(params.mealSlug);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 export default function Slug({ params }) {
   const meal = getMeal(params.mealSlug);
   if (!meal) {
