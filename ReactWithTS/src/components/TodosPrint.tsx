@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 import Todo from "../models/todo";
 
-function TodoPrint({
-  item,
-  onClick,
-}: {
-  item: Todo;
-  onClick: (id: number) => void;
-}) {
+function TodoPrint({ item }: { item: Todo }) {
+  const todoContext = useContext(TodosContext);
   function deleteHandler() {
-    onClick(item.id);
+    todoContext.removeTodo(item.id);
   }
 
   return (

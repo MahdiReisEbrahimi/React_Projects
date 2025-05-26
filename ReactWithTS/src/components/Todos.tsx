@@ -1,23 +1,16 @@
 import React from "react";
-import Todo from "../models/todo";
 import TodoPrint from "./TodosPrint";
+import { useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 
-function Todos({
-  items,
-  onClick,
-}: {
-  items: Todo[];
-  onClick: (id: number) => void;
-}) {
-  
-  function deleteHandler2(id: number) {
-    onClick(id);
-  }
+function Todos() {
+  const itemsContext = useContext(TodosContext);
+  function deleteHandler2(id: number) {}
 
   return (
     <ul className="bg-gray-200 p-1 rounded-sm">
-      {items.map((item) => (
-        <TodoPrint key={item.id} item={item} onClick={deleteHandler2} />
+      {itemsContext.items.map((item) => (
+        <TodoPrint key={item.id} item={item} />
       ))}
     </ul>
   );

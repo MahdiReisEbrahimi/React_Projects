@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
+import { useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 
-function NewTodo({ onSubmitTodo }: { onSubmitTodo: (text: string) => void }) {
+function NewTodo() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const itemsContext = useContext(TodosContext);
 
   function submitHandler(event: React.FormEvent) {
     event.preventDefault();
@@ -12,7 +15,7 @@ function NewTodo({ onSubmitTodo }: { onSubmitTodo: (text: string) => void }) {
       return;
     }
 
-    onSubmitTodo(enteredText);
+    itemsContext.addTodo(enteredText);
   }
 
   return (
