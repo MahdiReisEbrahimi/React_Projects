@@ -1,8 +1,7 @@
 import React from "react";
-import Todo from "../models/todo";
 
-const TodoPrint: React.FC<{ item: Todo }> = ({ item }) => {
-  return <li>{item.text}</li>;
+const TodoPrint: React.FC<{ text: string }> = ({ text }) => {
+  return <li>{text}</li>;
 };
 
 export default TodoPrint;

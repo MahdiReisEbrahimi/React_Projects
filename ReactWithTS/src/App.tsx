@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Todos from "./components/Todos";
 import Todo from "./models/todo";
-
-const items = [new Todo("Learn React"), new Todo("Learn TypeScript")];
+import NewTodo from "./components/NewTodo";
 
 function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+
+  function addNewTodo(newTodoText: string) {
+    setTodos((prev) => {
+      return [new Todo(newTodoText), ...prev];
+    });
+  }
   return (
     <div className="m-10 p-30">
-      <Todos items={items} />
+      <Todos items={todos} />
+      <NewTodo onSubmitTodo={addNewTodo} />
     </div>
   );
 }
