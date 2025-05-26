@@ -11,9 +11,14 @@ function App() {
       return [new Todo(newTodoText), ...prev];
     });
   }
+
+  function deleteHandler3(id: number) {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  }
+
   return (
     <div className="m-10 p-30">
-      <Todos items={todos} />
+      <Todos items={todos} onClick={deleteHandler3} />
       <NewTodo onSubmitTodo={addNewTodo} />
     </div>
   );
