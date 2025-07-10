@@ -8,6 +8,7 @@ import Navigation from "./Navigation";
 import { CiAlarmOn } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { FaFire } from "react-icons/fa";
+import AutoFill from "./AutoFill";
 
 function App() {
   const [hours, setHours] = useState(0);
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className="text-white">
+      <AutoFill />
       <div className="flex justify-center mb-5 bg-blue-100 p-10 rounded-lg">
         <div className="text-4xl rounded-full bg-blue-500 p-10">
           <CgProfile />
